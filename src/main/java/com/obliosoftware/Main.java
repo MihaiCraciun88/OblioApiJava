@@ -48,6 +48,7 @@ public class Main {
                 .setSecret(env.get("API_SECRET"))
                 .setCif(env.get("CIF"))
                 .build();
+
             // JSONObject result = api.nomenclature("companies", new HashMap<String, String>());
             JSONObject result = api.createDoc("invoice", data);
             System.out.println(result.toString());
