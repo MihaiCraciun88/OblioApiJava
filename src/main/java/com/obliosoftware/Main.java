@@ -53,7 +53,7 @@ public class Main {
             JSONObject result = api.createDoc("invoice", data);
             System.out.println(result.toString());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

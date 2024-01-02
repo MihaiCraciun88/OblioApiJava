@@ -155,6 +155,8 @@ public class OblioApi {
             .build();
 
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+        _checkResponse(response);
+
         AccessToken accessToken = new AccessToken()
             .fromJsonString(response.body());
         return accessToken;
