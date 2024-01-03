@@ -147,24 +147,23 @@ public class OblioApi {
         payload.put("client_secret", _secret);
         payload.put("grant_type", "client_credentials");
 
-        HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(_baseURL + "/api/authorize/token"))
             .header("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString(payload.toString()))
             .build();
 
+        HttpClient client = HttpClient.newHttpClient();
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
         _checkResponse(response);
 
-        AccessToken accessToken = new AccessToken()
+        return new AccessToken()
             .fromJsonString(response.body());
-        return accessToken;
     }
 
     protected String _getCif() throws Exception
     {
-        if (_cif == "") {
+        if (_cif.equals("")) {
             throw new Exception("Empty cif");
         }
         return _cif;
