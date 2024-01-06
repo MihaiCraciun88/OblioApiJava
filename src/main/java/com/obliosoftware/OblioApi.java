@@ -53,7 +53,7 @@ public class OblioApi {
 
     /**
      *  @param type String companies/vat_rates/products/clients/series/languages/management
-     *  @param data Map filters
+     *  @param filters Map<String, String>
      *  @return JSONObject
      */
     public JSONObject nomenclature(String type, Map<String, String> filters) throws Exception
@@ -142,10 +142,10 @@ public class OblioApi {
     }
     protected AccessToken _generateAccessToken() throws Exception
     {
-        JSONObject payload = new JSONObject();
-        payload.put("client_id", _email);
-        payload.put("client_secret", _secret);
-        payload.put("grant_type", "client_credentials");
+        JSONObject payload = new JSONObject()
+            .put("client_id", _email)
+            .put("client_secret", _secret)
+            .put("grant_type", "client_credentials");
 
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(_baseURL + "/api/authorize/token"))
